@@ -22,3 +22,8 @@ Perform Following Operatrions on the Above String
 		- Sort Arrya in Alphabetic Order of each String
 		- Sort Srray by Length of String
 		- Print all strings having First 4 Matching Characters
+
+# Date:23-Sept-2022
+
+1. MOdify the CS_OOPs_As_Application Project by adding a new Logic class for Nurse of name NurseLogic, this class will have methods for Add,Update,Delete and Read Nurse data. Similarly Modify the Doctor Logic class for Add,Update,Delete and TRead Doctor data. The NurseLogic class should also calcuate Income of Nurse.
+2. Save the Doctor data and Nuser Data into the Dictionary 
