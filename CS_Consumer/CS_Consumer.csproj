@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F892949-0883-4749-ADCD-E4F7F8924AD8}</ProjectGuid>
+    <ProjectGuid>{AC18FF2C-61EF-4DF5-B378-EA273E8143A5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CS_OOPs_As_Application</RootNamespace>
-    <AssemblyName>CS_OOPs_As_Application</AssemblyName>
+    <RootNamespace>CS_Consumer</RootNamespace>
+    <AssemblyName>CS_Consumer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,15 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\ApplicationDb.cs" />
-    <Compile Include="Logics\Accounts.cs" />
-    <Compile Include="Logics\LogicClasses.cs" />
-    <Compile Include="Models\ModelClasses.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CS_Controlling_Scope\CS_Controlling_Scope.csproj">
+      <Project>{a581b509-4c2e-4404-90d8-d8f9d33152c9}</Project>
+      <Name>CS_Controlling_Scope</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

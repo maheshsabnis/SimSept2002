@@ -27,3 +27,31 @@ Perform Following Operatrions on the Above String
 
 1. MOdify the CS_OOPs_As_Application Project by adding a new Logic class for Nurse of name NurseLogic, this class will have methods for Add,Update,Delete and Read Nurse data. Similarly Modify the Doctor Logic class for Add,Update,Delete and TRead Doctor data. The NurseLogic class should also calcuate Income of Nurse.
 2. Save the Doctor data and Nuser Data into the Dictionary 
+
+# Date: 24-Sept-2022
+
+1. Verify the following scenarios on Object Oriented Programming
+	- Can we have Private Constructor in Class, if yes then what is use of it?
+	- Can we have static constructor in class, if yes then what is use of it?
+	- Can we have private or proctected virtual or abstract method in abstract class?
+	- Can we override public virtual methods of abstract class using protected or private mthods of derive class?
+	- Can we have abstract method in non abstract class?
+	- Can we have sealed class modifier for derive class?
+	- Can we have virtual methods in sealed class?
+	- Can abstract class contains private data members in it?
+	- Can we have abstract method in sealed class?
+	- Can we create an instance of base class and cast it to the derive class?
+	- Can we cast the derive class instance to base class?
+	- Can we access the public virtual methods of base class w/o overriding these method in derive class using an instance of the derive class?
+	- Can we assign the reference of base class to derive class instance?
+	- Can we have not-static members in static class?
+	- Can we access static data members in non-static methods? 
+	- Can one interface implement other interface if yes then what is use of it?
+	- Can a interface implement multiple interfaces if yes then what is use of it?  
+2. Implement following LINQ Queries
+	- Print a Second Max salary of employee for each designation
+	- Print only those employees starts from character 'R' (upper or lower case)
+	- Print Middle 6 records from the Collection
+	- Update the Salary for each Employee with designation as 'Lead' by 5% ansd hence also calculate TDS as 15% of new salary
+	- Print all Employees group by Designation and print them with sum of salary at the bottom of each group
+	

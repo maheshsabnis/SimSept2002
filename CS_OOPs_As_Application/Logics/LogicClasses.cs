@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CS_OOPs_As_Application.Models;
+using CS_OOPs_As_Application.Database;
 namespace CS_OOPs_As_Application.Logics
 {
     /// <summary>
@@ -55,11 +56,16 @@ namespace CS_OOPs_As_Application.Logics
 
         public List<Doctor> GetDoctors()
         {
+            foreach (var doct in ApplicationDb.Staffs)
+            {
+                doctors.Add((Doctor)doct);
+            };
             return doctors;
         }
         public List<Doctor> AddDoctor(Doctor doctor)
         {
-            doctors.Add(doctor);
+            ApplicationDb.Staffs.Add(doctor);
+           // doctors.Add(doctor);
             return doctors;
         }
 
@@ -78,6 +84,34 @@ namespace CS_OOPs_As_Application.Logics
 
             doctor.DoctorMonthlyIncome = NetIncome - doctor.ShareToHospital;
             return doctor.DoctorMonthlyIncome;
+
+        }
+    }
+
+
+    public class NurseLogic : StaffLogic 
+    {
+        List<Nurse> Nurses = new List<Nurse>();
+
+        public List<Staff> GetNurses()
+        {
+            return ApplicationDb.Staffs;
+        }
+
+        public List<Nurse> AddNurse(Nurse nurse)
+        {
+            Nurses.Add(nurse);
+            ApplicationDb.Staffs.Add(nurse);    
+            return Nurses;
+        }
+
+        public override decimal GetIncome(Staff staff)
+        {
+            Nurse nurse = (Nurse)staff; // Downcasting
+
+            decimal NetIncome = base.GetIncome(staff) + (nurse.PatientsHandledInMonth * 100) + nurse.NuserOTAllowance;
+
+            return NetIncome;
 
         }
     }

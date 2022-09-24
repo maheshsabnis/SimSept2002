@@ -38,4 +38,12 @@ namespace CS_OOPs_As_Application.Models
         public int PatientsHandledInMonth { get; set; }
         public decimal NuserOTAllowance { get; set; }
     }
+
+
+    public class Accounting
+    {
+        public decimal GrossIncome { get; set; }
+        public decimal TDS { get; set; }
+        public decimal NetIncome { get; set; }
+    }
 }

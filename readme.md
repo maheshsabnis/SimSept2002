@@ -109,4 +109,68 @@
 	- Define an additional reference of the derive class and pass the base class reference which is instantiated using the instance of the derive class
 		- Circle circle = (Circle)shape;
 
+- Using Polymorphism
+	- This is used to provide a mechansim to compile-time as-well-as run-time to decide which method from which class it to be accessed based on the Class Instance Available while executing the application
+	- Compile-Time Polymorphism
+		- The Class instance is already created and has knowledge of the method that is to be Invoked, provided the class method is overrding its base class method
+	- Runtime or Dynamic Polymorphism
+		- The Runtime detect an instance of the class of which method is to be called 
+
+- Generally
+	- The class that contains a gateway method is ideally a final class, means this class MUST not be inherited
+	- Make this class as 'sealed' class
+
+- If we need to share a common data across all the classes within a Layer, then use the 'static' class with static members (Data Members and methods)
+	- The Static Class Cannot be Instantiated
+	- This is Thread-Safe, means that the class is loaded and its lifecycle is managed by the MainThread allocated to the application by the .NET Runtime (CLR)
+
+- Controlling the Classes and its members Within Namespace as well as other Namespaces
+	- This will help to create a class as well as its members with predefined scope so that they won't be  accessible in add-hoc way
 	
+- Interfaces
+	- They are contracts thise are implemeneted by classes to provide the standard method structure, so that the class amnd its methods are accessible using an interface reference 
+	- Use intrefaces to establish communicatoin across Homogenious or Hetrohenious Applications
+	- Facts
+		- A Class can implement one-or-more interfaces
+		- A Calss can derive from 'One-Base-Class' but can implement multiple interfaces, but this is not Multiple Inheritence
+		- A Class can implement Interface with following ways
+			- Implicit Implementation: The methods defined in interface are own by the class. These methods can be accessible using class instance as well as interface reference instantiated using the class
+			- Explicit Implementation: Methods defined in interface are implemeneted by class, but these methods are owned by the interface, means these methods are only accesible using interface reference instantiated using the class 
+				- This is recommended when class implements multiple interfaces and more than one interface have same samethod with same signeture and class wants to implement both these methods seperately with differn logic
+- Abstract Class Vs Interfaces
+	- Abstract class is fastest in Verticle serach for BAse class within an assembly or namespace
+		- Common Starndard for Implementation across all classes in highly cohesive application use Abstract class
+		- e.g.
+			- Stream class under System.IO namespace
+				- FileStream, NetworkStream, MemoryStream, etc.
+	- Use Interface when the communciation standard is implemented across herizontal application
+		- e.g.
+			- All Collections in .NET implements 'IEnumerable' interface for reading data from Collection
+			- Hence We can easily read data from one-type-of-collection and write into other-type-of-collection
+				- e.g.
+					- List to Array
+			
+- Language Specific Enhancements in C# .NET 3.5 with C# 3.0
+	- Lambda Expressions
+		- Used when a method accepts a delegate as its input parameter 
+		- The delegate encapsulate the method implementation
+	- Extension Methods
+		- Used to define an additional utilities to an existing class of which code is not accessible or the class cannot be inherited (sealed class) or the class is alrerady used in production which we cannot change/modify
+- Programming Structure using Language-Integrated-Query (LINQ)  .NET 3.5 with C# 3.0
+	- Bring Object and Data Together
+	- In-Memory Collection Processing for Reading (and optionally writing)
+	- Expression Extension Methods
+		- Thses Methods accepts 'Lambda Expression as input paframeter'
+			- Where(), OrderBy(), OrderByDescending(), GroupBy(), Select(), Take(), Skip(), First(), Last(), FirstOrDefault(), LastOrDefault(), etc.
+	- Imperative Operators
+		- where, select, order by desc, order by, group by, etc. 
+- Use of Task Parallel Librarh (TPL) future of C# and hence .NET App deveopment .NET 4.0+ with C# 4.0+
+	- Encapsulate the Threads and asynchronous operations using Task class
+	- Performs Parallel Processing of the Collection (Huge data) by encapsulating the Threads by using CPUs on the machine to improve performance using 'Parallel' class 
+	- The ConcurrentCollection to share collection across muktiple threads
+		- System.Collections.Concurrent
+			- Thread-Safe Collections
+				- ConcurrentBag
+				- ConcurrentDictionary
+				- ConcurrentStack
+				- ConcurrentQueue

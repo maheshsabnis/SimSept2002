@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F892949-0883-4749-ADCD-E4F7F8924AD8}</ProjectGuid>
+    <ProjectGuid>{A581B509-4C2E-4404-90D8-D8F9D33152C9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CS_OOPs_As_Application</RootNamespace>
-    <AssemblyName>CS_OOPs_As_Application</AssemblyName>
+    <RootNamespace>CS_Controlling_Scope</RootNamespace>
+    <AssemblyName>CS_Controlling_Scope</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,10 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\ApplicationDb.cs" />
-    <Compile Include="Logics\Accounts.cs" />
-    <Compile Include="Logics\LogicClasses.cs" />
-    <Compile Include="Models\ModelClasses.cs" />
+    <Compile Include="Operations\DataProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
