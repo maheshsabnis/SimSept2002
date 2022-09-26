@@ -55,3 +55,8 @@ Perform Following Operatrions on the Above String
 	- Update the Salary for each Employee with designation as 'Lead' by 5% ansd hence also calculate TDS as 15% of new salary
 	- Print all Employees group by Designation and print them with sum of salary at the bottom of each group
 	
+
+# Date :26-09-2022
+1. Write a test on the Login() method to check if the Login is successful or failed and also chek if the UserName and/or password arte empty
+2. Write auNit Test on GetEmployee() to verify that the Method returns List of Employee
+3. Write a test on  GetDetails() method that accepts 'id' make sure that id 'id' is 0 the method return null, if id is -ve then excepytion is throw and if employee is found based on id then make sure that the Employee object is retrurned with data in it  
