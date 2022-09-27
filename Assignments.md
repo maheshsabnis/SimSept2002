@@ -60,3 +60,8 @@ Perform Following Operatrions on the Above String
 1. Write a test on the Login() method to check if the Login is successful or failed and also chek if the UserName and/or password arte empty
 2. Write auNit Test on GetEmployee() to verify that the Method returns List of Employee
 3. Write a test on  GetDetails() method that accepts 'id' make sure that id 'id' is 0 the method return null, if id is -ve then excepytion is throw and if employee is found based on id then make sure that the Employee object is retrurned with data in it  
+
+# Date : 27-09-2022
+1. Go thriugh the Thread, Parallel, and Task Projects first to understand them
+2. Modify the code of CS_Parallel project which process the collection Parallely by writing each processed record in seperate file
+	- Make sure that this file is written Asyncronously (use of Task Object) 

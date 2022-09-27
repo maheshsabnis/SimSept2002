@@ -197,3 +197,33 @@
 		- Object Type Equality
 			- Equao 
 			- Greatethan, LessThan, AsType, AsExcception
+
+# Task Parallel Programming
+
+1. Parallel class
+	- Requests CLR for Threads to Procss the collection
+	- The code need not to create and manage threads, instead they will be managed internally
+	- Methods
+		- Paralle.For()
+		- Parallel.ForEah()
+		- Parallel.Invoke()
+			- We can perfrom Multiple tasks internally inside 'Invoke()' methods
+2. Task
+	- This represents a unit of Asynchronous Execution
+		- Create a Thread
+		- Dedicate an operation on the thread
+		- Execute the Thread
+			- Get Return Value from Task
+			- Continue from one Task to Another Task and passes data across these tasks
+	- The CLR Async Methods
+		- These method name ends with 'Async()'
+		- All these methods returns 'Task' Object
+	- The .NET 4.5+
+		- The 'async' method modifer, that represents the is executed asynchronously and it has at least one statement  or a method call that perform Async operations
+		- In 'async' method, the statement that perform asyn operations must be applied with 'await' keyword
+			- All File Methods
+			- All Data Access Methods
+			- All Network Methods
+			- ASP.NET MVC and API executes the Request using 'ExecuteAsync()' method
+			- Async HttpHandler and HttpModule
+			
