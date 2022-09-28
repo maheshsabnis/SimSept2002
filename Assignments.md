@@ -65,3 +65,15 @@ Perform Following Operatrions on the Above String
 1. Go thriugh the Thread, Parallel, and Task Projects first to understand them
 2. Modify the code of CS_Parallel project which process the collection Parallely by writing each processed record in seperate file
 	- Make sure that this file is written Asyncronously (use of Task Object) 
+
+
+# Date: 28-Sept-2022
+
+1. Use Scrips from Git to Create Department and Employee Table
+2. Implement following
+	- Try to Add Not null Column name 'Experience' in Employee Table
+	- Print Max(Salary) Per DeptName and display result as EmpNo,EmpName, DeptName,Salary
+	- Print Min(Salary) Per DeptName and display result as EmpNo,EmpName, DeptName,Salary
+	- Print EmpName and DeptName of Employee Having Max and Min Salary (2 Select Statements)
+	- Display Second Max Salary and Second Min Salary group by DeptName
+	- Show EMployees only in Information Technology and Human Resource DeptName

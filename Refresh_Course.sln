@@ -8,7 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F148F32B-A3D2-47A7-8624-8806BF8519DD}"
 	ProjectSection(SolutionItems) = preProject
 		Assignments.md = Assignments.md
+		DML_Queries.sql = DML_Queries.sql
+		Queries.sql = Queries.sql
 		readme.md = readme.md
+		select_queries.sql = select_queries.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_Strings", "CS_Strings\CS_Strings.csproj", "{ECE253CD-625E-4B9B-8DF6-33C9200A5446}"
