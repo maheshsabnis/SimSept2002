@@ -51,9 +51,13 @@ where Salary<(select Max(Salary) from Employee);
 select top(3) * from Employee
   Order By EmpName desc; 
 
-  
+  select Empname from employee order by salary offset 1 rows;
  
-
+SELECT EmpNo, EmpName
+FROM Employee
+ORDER BY EmpNo
+OFFSET 3 ROWS FETCH NEXT 6 ROWS ONLY
+ 
 -- join
 -- Why?
 -- When the data is acattered across tables then to read 
