@@ -77,3 +77,21 @@ Perform Following Operatrions on the Above String
 	- Print EmpName and DeptName of Employee Having Max and Min Salary (2 Select Statements)
 	- Display Second Max Salary and Second Min Salary group by DeptName
 	- Show EMployees only in Information Technology and Human Resource DeptName
+
+# Date:29-Sept-2022
+1. Create a Stored Procedure that will perform Insert operation in to the Employee table with following condition check
+	- EmpNo MUST not be 0
+	- EmpName MUST be String w/o any Special Characters
+	- Deisgnation MUST be one of the following value
+		- Director, Manager, Lead, Associate
+	- Salary MUST be with the following rules
+		- Director, Salary >= 900000
+		- Manager, Salary >= 700000 to 899999
+		- Lead, Salary >= 500000 to 699999
+		- Associate, Salary >= 300000 to 499999
+	- If Conditions for EmpNo, EMpName, Designation and Salary are not satisfied then raise error that
+		- EmpNo is Invalid, Designation is not correct, EMpName is invalid, Salary range is invalid
+	- MAke sure that DeptNo is already available inb Department Table to preven an un-necessary Referential Integrity or Foireign Key Error
+		- If not then Raise an exceptio / erro saying that the DeptNo is not Found in Department Table
+	- If the Capacity of Department is already full with Employees then the new Insert of Employee in that department MUST be rejected	 
+		- e.g. If DeptNo 10 has Max Capacity is 5 and if already 5 Employees are present in Dept 10 in Employee Table then this new Employee Request must rais an exception saying that The Capacity is full
