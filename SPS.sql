@@ -194,3 +194,5 @@ Go
  
 Select * from Department;
 Select * From Employee;
+
+Insert into Employee Values (2003, 'MAhesh', 'Manager', 700000, 12);

@@ -227,3 +227,62 @@
 			- ASP.NET MVC and API executes the Request using 'ExecuteAsync()' method
 			- Async HttpHandler and HttpModule
 			
+
+# Using EntityFramework
+- EntityFramework Package
+	- DbContext class
+		- USed to Manage the Database Connection using the ConnectionString
+		- Managed the Table Mapping of CLR Class with Database Tables using DbSet<T> class
+		- Manages Db Transaction
+			- SaveChanges() and SaveChangesAsync()
+	- DbSet<T> class
+		- Maps the CLR class of name 'T' with Database Table of Name 'T'
+		- e.g.
+			If the Table name is 'Department' then the CLR class Name will be 'Department'
+		- Methods to Perform Read/Write Operations
+			- Add(CLR Object) and AddAsync(Array of CLR Objects)
+				- Add new Record(s) in Table
+			- Remove(CLR Object)
+				- Removes the CLR Object
+			- Find(id) and FincAsync(id)
+				- Search Recod Based on Primary Key
+	- Pseduo code
+		- Consider the CompanyContext is DbContext class that manages the Connection and Mapping and 'ctx' is an instance of the class
+		- Consider 'Employees' is a DbSet<Employee> wheer Employee is CLR class that maps with the 'Employee' Table
+		- Read All Records
+			- var result = ctx.Employees.ToList(); or var result = ctx.Employees.ToListAsync();
+		- Read a Single Record from Employees based on Primary Key e.g. EmpNo
+			- var emp =ctx.Employees.Find(EmpNo); 
+			- var emp = ctx.Employees.FindAsync(EmpNo);
+		- To Add OR Append new Record in Employee Table
+			- Create an Instance of Employee class and set values for all of its properties
+				- e.g.	
+					- EMployee emp = new Employee();
+					0 emp.EmpNo=101l emp.EmpName="ABC";.....
+			- Pass this object to Add() or AddAsync() method of DbSet
+				- ctx.Employees.Add(emp);
+				- ctx.Employees.AddAsync(emp);
+			- Commit Transaction
+				- ctx.SaveChanges();
+				- ctx.SaveChangesAsync();
+		- To Update Record
+			- Search Record Based on Primary Key using Find() or FinsAsync() method
+			- Pass this record to Remove() Method
+				- ctx.Employees.Revove(emp);
+			- Commit Transaction by calling SaveChanges() or SaveChangesAsync() method
+		- To Delete Record	
+			- Search Record based on Primary Key
+			- Update its property values
+			- Commit Transactions
+- EF Approaches
+	- Database First Approach
+		- Generate entites based on database
+		- Approach is used when the database need not be updated or its production ready or the Older Application is migrated to new application	by keeping database as-it-is
+		- Use the Visual Studio EntityFramework Template to Generate Classes from database
+			- This will also Generate XML files which may be an overhead
+		- USe the 'Package Managed Console'
+			- Tools->Nuget Package Manager -> Package Manager Console
+			- Run the following command
+				- Scaffold-DbContext "CONNECTION-STRING" Microsdoft.EntityFramework.SqlServer- OutputDir Models
+					- The Application will buld first and the connect to Database usign the ConnectionString and generate classed for all tables
+				-  Scaffold-DbContext "CONNECTION-STRING" Microsdoft.EntityFramework.SqlServer- OutputDir Models -Tables [COMMA-SEPERATED-NAMES -OF-TABLES] 
