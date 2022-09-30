@@ -95,3 +95,23 @@ Perform Following Operatrions on the Above String
 		- If not then Raise an exceptio / erro saying that the DeptNo is not Found in Department Table
 	- If the Capacity of Department is already full with Employees then the new Insert of Employee in that department MUST be rejected	 
 		- e.g. If DeptNo 10 has Max Capacity is 5 and if already 5 Employees are present in Dept 10 in Employee Table then this new Employee Request must rais an exception saying that The Capacity is full
+
+#Date: 30-09-2022
+1. Perform CRUD Operations on Employee Table bt Creating Employee Class
+2. Create a Class Named DbOperations with following method
+	-CreateRecords(List<Department> depts, List<Employee> emps)
+	 {
+		 // Logic for Inserting Department and Employees based on the following
+			- a. Make sure that the Capacity of Department is not full, if capacity is full then do not add employee in that department
+			- b. If ValidateData() is true, then only add Depts and Emps
+			- c. Make sure that the DeptNo is present while adding Employee this menas that in Each Employee record of List<Employee>, tye DeptNo value MUST be present in Department Table 
+			- d. Save Transactions
+				- Use AddRange() instead of Add()
+	 }
+	 - private bool ValidateData(Department dept, Employee emp)
+	 {
+		 // check for validation as
+			- All String Coloumns are MUST
+			- All Numeric Columns are Positive
+			return true;
+	 }

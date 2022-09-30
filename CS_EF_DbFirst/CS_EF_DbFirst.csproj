@@ -58,6 +58,7 @@
     <Compile Include="Department.cs">
       <DependentUpon>RFCompanyContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentDataAccess.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>RFCompanyContext.tt</DependentUpon>
     </Compile>
