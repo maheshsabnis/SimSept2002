@@ -286,3 +286,36 @@
 				- Scaffold-DbContext "CONNECTION-STRING" Microsdoft.EntityFramework.SqlServer- OutputDir Models
 					- The Application will buld first and the connect to Database usign the ConnectionString and generate classed for all tables
 				-  Scaffold-DbContext "CONNECTION-STRING" Microsdoft.EntityFramework.SqlServer- OutputDir Models -Tables [COMMA-SEPERATED-NAMES -OF-TABLES] 
+- Open-Close-Principal (OCP)
+	- The System (Software) MUST be open for Enhancements/Extensions but MUST be close for Modifications
+- If the Model Design aka Coinceptual design require changes or customization based on Customrs' needs as well as the customer may have liberty to use different database than suggested by you (or used by your product), then consider using 'Code-First Approach'
+	- Steps for Working with Code-First
+		- Create a Conceptual Logical Model (aka Entity Class)
+			- Classes with Public Properties
+			- Each Class will Have  a 'Key' property
+				- This property will act as a Primary Identrity Key
+				- This is implemented using the 'KeyAttribute' class from 'System.ComponentModel.DataAnnotations' package
+					- Install-Package System.ComponentModel.Annotations
+			- It is recommended that, properties should be applied with Data Annotations Rules i.e. Constraints
+				- e.g. Required, Compare, RegEx, StringLength, etc.
+			- If a relation is required across these models then use the One-to-Many and One-to-One Relation
+		- Configure the Project to use EntityFramework
+			- Use the package that is required for establising connection with Database
+				- EntityFramework.SqlServer
+			- Define a Database Conenction String in Configuration File 
+			- Create a class that is derived from 'DbContext' class
+				- The constructor of this class will be responsible to read the Connection String from Configuration
+				- Define DbSet<T> properties in this class, where T is the Entity Class
+				- Override the OnModelCreating() method
+		- Generate Migration
+			- The Class that will generate a Script to create database table(s)
+			- Step 1
+				- Enable Migrations for the project
+					- PM&gt; Enable-Migrations
+				- Add Migration to create a Class
+					- PM&gt; Add-Migration [MIGRATION-NAME]
+				- Update Database
+					- This will execute the script to creare database and tables using the DbContext class
+					- PM&gt; Update-Database 
+			- Enforce a Specific Migration
+				- Update-Database –TargetMigration:[MIGRATION-NAME]
