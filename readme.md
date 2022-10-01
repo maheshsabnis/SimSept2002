@@ -319,3 +319,65 @@
 					- PM&gt; Update-Database 
 			- Enforce a Specific Migration
 				- Update-Database –TargetMigration:[MIGRATION-NAME]
+- Fluent APIs
+	- They are the approaches of using the Code-First by explicitly defing the Database Table Mapping on CLR Class properties using the code
+	- The 'DbModelBuilder' class contains an 'Entity<T>()' , a generic method that is used to map the Model class to Table with all its properties
+		- HasKey()
+		- Property()  method that further allows to define MaxLenght, Relationships across Model class properties
+
+# Programming with MVC
+
+1. Project Structure
+	- Models Folder
+		- This Contains all Model / Entity Classes
+		- We can also have Business Logic oin Sub-Folders
+	- Controllers
+		- Contains All MVC Controllers
+	- Views
+		- Contains a Sub-Folder that matches with Controller Class Name and contains views for each action method from the Controller
+	- Scripts
+		- Contains all JavaScript libraries and Files those send to Browser when the HTTP Request is received and View is rendered back to the Browser
+	- App_Data
+		- Contains Data Files e.g. SQL Server Local DB File (Not-Recommended)
+		- Xml Files
+		- JSON Files
+	- App_Start
+		- This contains Logic for Identity Management 
+	- Contents 
+		- Contains Bootstrap CSS for Look and Feel for UI
+	- Fonts
+		- Contains Fonts those are used by the Bootstrap
+	- Global.asax	
+		- The File that will start the Request Processing for MVC Apps
+			- Initialize the Application
+			- Create a Route Table
+			- Load all Global Objects e.g. Filters
+			- Create Bundle for All JavaScript Files those are send to Browser
+	- Web.Config file
+		- Contains Application Level Configurations e.g. ConnectionStrings, HttpHandlers, httpModules, etc.
+	- Startup.cs
+		- Thsi will staert the Application and hence load all Identity Modules aka Open Web Interface for .NET (OWIN)
+- Programming Steps
+	- Create Models
+		- Entities, Data Access, Logic, etc.
+	- Create Controllers With Action Methods
+		- Validations
+		- Security
+		- Filters
+		- Exceptions
+	- Views
+		- Generate Views to show data
+- MVC Packages
+	- System.Web.Mvc
+		- MVC Runtime
+		- Execute The MVC Request Processing
+	- Packages for Views
+		- System.Web.Razor
+			- A New View Engine for MVC
+			- Combination of C# and HTML, .cshtml
+		- System.Web.WebPages
+			- manages the execution 
+		- System.Web.WebPages.Razor
+			- Execute Razor View on MVC Runtime
+	- System.Web.Routing
+		- Used to Create and Manage the Route Table
