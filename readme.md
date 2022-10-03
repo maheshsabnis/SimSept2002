@@ -381,3 +381,98 @@
 			- Execute Razor View on MVC Runtime
 	- System.Web.Routing
 		- Used to Create and Manage the Route Table
+
+- Controller
+	- An Important part of MVC whihc is a class that accepts HTTP Request
+	- THis further Evaluates the HTTP request and Exccutes methods from the Controller class
+		- Each Public Method of Controller class is 'Action Method' because it is activated and executed based on HTTP Request
+		- By default each Public method is HTTP-GET, means it will be executed with HTTP GET request received from the end-user
+		- To execute the method with HTTP-POST request, it MUST be applied with [HttpPost] Attribute
+		- Each action method returns a 'View' and Pass data received from Model layer so tthat View can show it
+	- The 'ControllerBase' is the base class and its has following properties and Methods
+		- Properties
+			- RouteData
+				- Used for Detecting the URL based on which the Controller and its action method will be executed using the  'RouteTemplate' 'ReuteConfig.cs' file
+```` csharp
+	public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+        }
+    }
+````
+
+				- {controller}/{action}/{id} , the RouteTemplate
+					- controller: The Name of the Controller in URL
+					- action: The NAme of the Action Method in URL
+					- id: The URL Parameter that is passed to the method. This is Optional
+				- RouteData will read the URL
+					- http://Myserver/MyApp/MyCtrl/MyAction/10
+						- controller:MyCtrl
+						- action:MyAction
+						- id:10
+					- The 'MyCtrl' will be loaded and its MyAction method will be executed by passing 10 as a parameter to it
+			- ModelState
+				- Of the Type ModelStateDictionary
+					- This Represents the Model Validation applied on Model class that is Posted to the Action Method using HttpPost request
+					- This has 'IsValid' property, this is set to false if the validation fails
+						- ModelState.IsValid
+
+			- ViewData: Of the type ViewDataDictionary, used to pass data dynamically from Action Method to View and Back. Similarly we have 'ViewBag' (Introducted in MVC 3) 
+			- TempData: USed to send data across Controllers
+			- Request: HttpRequest, Response:HttpResponse
+			- User: IPrincipal, Used to Read the Current Login User
+		- Method
+			- View()
+				- return View from Action Method
+				- Various overloads
+					- View(MODEL), View(VIEW-NAME-AS-STRING), View(VIEW-NAME-AS-STRING, MODEL), etc.
+			- The View i.e. the .cshtml file from the sub-folder matched with the controller name of View Fol;der whihc match with the Action Name ( by default) will be returned
+				- e.g. If Controller Name is 'MyController' that has Action Methods 'MyAction', then the 'Views' folder will have 'My' sub-folder and then it will have the 'MyAction.cshtml' view file that will be returned by default 
+ 
+			- OnException(), OnAuthorization(), etc.
+
+		- Interfaces Impleted by The 'Controller' class
+			- IActionFilter: Used to Load an Executed Additional Logic that is applied on Controller class or its action method while requets Processing e.g. Logging Request, Custom Exception, etc.
+			- IAuthenticationFilter: Used to for executing the Authorize and Authentication Filer for Security 
+			- IAuthorizationFilter:: Used to for executing the Authorize and Authentication Filer for Security 
+			- IDisposable: Unload the Controller class from Memory
+			- IExceptionFilter:Load the Standard Exception Handling for the Controller
+			- IResultFilter:THis will take of the Result responded after the action Method is executed 
+			- IAsyncController: Used if the COntroller contains an async action methods
+			- IController: The Controller Contract
+			- IAsyncManagerContainer: Manages Async Action Execution
+- To Add View, Right-Click on the Action Method and Select the 'Add View' from Context Menu, then select the Folowing information from the next window (This Process is known as 'Scaffolding')
+	- Enter View Name, Note by defalt it will be same as the name of the action method that is right-clicked
+	- Select View Template Type from following options
+		- List: Show List of Model Data of the Model class i.e. IEnumerable&lt;Model&gt;
+		- Create: A new Instance of Model class to accept data from End-USer to create new entry in database
+		- Edit: An Instance of Model class which is supposed to be edited
+		- Delete: An Instance of teh Model class which is to be deleted
+		- Details: An Instance of Model class which is read-only
+		- Empty: This does not have any HTML UI, we cna create it as per the need
+		- Empty (Without Model): No model class, this is used fro JavaScript
+	- Select the 'Model' class of which data is to be shown on View 
+- View
+	- Strongly Typed - Page View aka View, Accept Model and it is executed like an individual Page and show and accept data
+	- Strongly Typed - Partial View aka User Control, Accept Model and it is executed like an a 'Re-Usable UI' on Page View
+	- A Page View w/o Model Object. We can used thos for HTML and JavaScript design
+- View is always executed on Server, it has a BAse class called as 'WebViewPage<TModel>'
+	- The 'TModel' represents the Model class passed to View while scaffolding
+	- The WebViewPage<TModel> class has following Properties
+		- The 'Model' of the Type 'TModel', represents the Model class type opassed to view while scaffolding
+			- e.g. If View Template is 'List' and model class passwd to it is 'Category', then TModel will be 
+```` csharp
+			IEnumerable<Category>
+````
+			- Hence the 'Model' property will be Collection of Category object 
+		- The 'Html', of the type HtmlHelper<TModel>, used to generate the HTMl UI by loading HTML UI Helper method on the View
+		- The 'ViewData' of teh Type 'ViewDataDictionary', used to show data other than provided by the Model class to View 
+

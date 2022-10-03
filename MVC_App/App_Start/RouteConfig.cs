@@ -13,6 +13,7 @@ namespace MVC_App
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // The 'Index' action method from the 'Home'Controller will be called and it will return the 'Index' View
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

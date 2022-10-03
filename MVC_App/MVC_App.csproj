@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -236,6 +237,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,6 +256,28 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Data.Contract\Application.Data.Contract.csproj">
+      <Project>{75ccb732-3877-4378-a4d5-2a585187c1bc}</Project>
+      <Name>Application.Data.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.Data.DataAccess.Services\Application.Data.DataAccess.Services.csproj">
+      <Project>{86abdd31-044d-42a8-bd16-d4ee3acb13bc}</Project>
+      <Name>Application.Data.DataAccess.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.Data.DataAccess\Application.Data.DataAccess.csproj">
+      <Project>{38b60da2-7a82-4b86-b9c7-c6291aa7dad4}</Project>
+      <Name>Application.Data.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.Model.Entities\Application.Model.Entities.csproj">
+      <Project>{f48801a9-f79e-4ca6-9a2c-ecc2e042ac6e}</Project>
+      <Name>Application.Model.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.Model.Entity.Base\Application.Model.Entity.Base.csproj">
+      <Project>{57fb9344-5b0b-44ea-a315-6213c4b6b15f}</Project>
+      <Name>Application.Model.Entity.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
