@@ -13,10 +13,10 @@ namespace Application.Model.Entities
     {
         [Key]
         public int CategoryUniqueId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Category Id is required")]
         [StringLength(50)]
         public string CategoryId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Category Name is required")]
         [StringLength(200)]
         public string CategoryName { get; set; }
         public decimal BasePrice { get; set; }
@@ -29,23 +29,24 @@ namespace Application.Model.Entities
     {
         [Key]
         public int ProductUniqueId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Product Id is required")]
         [StringLength(50)]
         public string ProductId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Product Name is required")]
         [StringLength(200)]
         public string ProductName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Manufacturer is required")]
         [StringLength(300)]
         public string Manufacturer { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Description is required")]
         [StringLength(500)]
         public string Description { get; set; }
+        [NumericNonNegative(ErrorMessage = "Price MUST be Positive Numeric")]
         public decimal Price { get; set; }
         public decimal Vat { get; set; }
         public decimal TotalPrice { get; set; }
         // reference Key
-        [Required]
+        [Required(ErrorMessage = "Category Id is required")]
         public int CategoryUniqueId { get; set; }
         // Establish One-to-One Relationship and the CategoryUnuiqueId
         public Category Category { get; set; }

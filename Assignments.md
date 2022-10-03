@@ -118,3 +118,9 @@ Perform Following Operatrions on the Above String
 
 # Date:03-Oct-2022
 1. Go through the MVC App, add a new Product COntroller and add its action Methods and Views.  
+2. While Creating/Updating the Product MAke sure that the Product Data is valid based on Following Rules
+	- The ProductId Must not be repeted (Now)
+	- Make sure that the Price of the product MUSt be greater tha or equal to BasePrice of the category selected for the Product (Now)
+	- MAke sure that the Edit View for Product also shows the Dropdow for Category Names
+	- Make sure that the CategoryId is not repeted (Now)
+	

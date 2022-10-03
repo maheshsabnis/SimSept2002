@@ -476,3 +476,22 @@
 		- The 'Html', of the type HtmlHelper<TModel>, used to generate the HTMl UI by loading HTML UI Helper method on the View
 		- The 'ViewData' of teh Type 'ViewDataDictionary', used to show data other than provided by the Model class to View 
 
+
+# Practices Those MUST be followed whiel Working with MVC
+	- Make sure  that the End-Use is shown the UI as well as the data on View which is required either to view or the end-user wnat to enter data for the same 
+	- If using the Parent-Child Relationships b ased Models e.g. Categoty-Product, then make sure that in Child View show the List of Dependency Key for the Forieng Key for Child Table
+		- e.g. CateogryUniqueId is Foreign Key ion Product Table, so while showing the View for Create Product show the List of CategoryName in DropDown instaed of showing TextBox to enter CategoryUniqueId 
+		- Fact with MVC View
+			- A MVC View can  accept only one Model class 
+			- To pass data to View other than the Model object use ViewData or View Bag, 
+				- If the ViewBag or ViewData value is used in PostBack (FormPost), then make sure that the Key of ViewData or ViewBag must matche with the property of Model class for which we are passing the ViewBag or ViewData 
+			- Note: If an Action Method is passing ViewBag or ViewData to View then All Action Methods returning to same view MUST pass the ViewBag/ViewData to the View
+	- Make sure that all validations are implemented on Model Properties to Validaste input received from End-User
+		- Guidelines for Validations
+			- If the Models/Entities classes are available for Updates (Code-Change), then apply validation rules directly on its properties
+				- USe the ModelState.IsValid property to validate the Model
+					- MVC 5 uses 'UnOnstrusiveValidations' that send the jquery.unobstrusive.validate.js to browser and handle validations in JavaScript Form on Browser
+					- The Web.Config file with 'UnobtrusiveJavaScriptEnabled' set to 'true'
+				- If using ModelStatet.IsValid for Data Annotations, then the custom Valdiation cab also be implemented
+					- Create a Class deribed from Vadlition Attribute and override its 'IsValid()' method
+			- If the Modele/Entities are not available for Modifications, then write a seperate validator Logic  
