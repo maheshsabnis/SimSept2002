@@ -4,6 +4,31 @@
     ViewBag.Title = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+@if (Model != null)
+{
+    <h1 class="text-danger">Error.</h1>
+    <h2 class="text-danger">An error occurred while processing your request.</h2>
+    <hr />
+    <h2>
+        Error Occurred in @Model.ActionName method of the @Model.ControllerName Controller
+    </h2>
+    <h2>
+        The Error Is:--> @Model.Exception.Message
+    </h2>
+    @Html.ActionLink("Go Back", Model.ActionName, Model.ControllerName)
+
+}
+else
+{
+<h2>
+    Error Occurred in @ViewData["ActionName"] method of the  @ViewData["ControllerName"] Controller
+</h2>
+<h2>
+    The Error Is:-->  @ViewData["ExceptionMessage"]
+</h2>
+    
+ <a href="~/@ViewData["ControllerName"]/@ViewData["ActionName"]">Go Back</a>
+}
+
+
 

@@ -63,5 +63,17 @@ namespace MVC_App.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult ShowProducts(int id)
+        { 
+            Category cat = catServ.Get(id);
+            TempData["Category"] = cat;
+
+
+            // Save id in TempData
+            TempData["CategoryUniqueId"] = id;
+            // Redirect to Index Veiw Of the Prtoduct Controller
+            return RedirectToAction("Index", "Product");
+        }
     }
 }

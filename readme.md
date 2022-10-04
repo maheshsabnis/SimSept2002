@@ -495,3 +495,47 @@
 				- If using ModelStatet.IsValid for Data Annotations, then the custom Valdiation cab also be implemented
 					- Create a Class deribed from Vadlition Attribute and override its 'IsValid()' method
 			- If the Modele/Entities are not available for Modifications, then write a seperate validator Logic  
+
+
+- Creating Custom Action Filters
+	- These are custom Object those will be added into the MVC Request Processing, They will be loaded and executed in HTTP Request Pipeline withiut stopping the Standard Execution
+		- E.g.
+			- Custom Logger
+			- Custom Exception
+			- Custom Authentication
+	- The IActionFilter
+		- An Interface that is implemented for Creating Action Filter
+	- ActionFilterAttribute
+		- An Abstract base class for creating Action Filters
+		- OnActionExecuting(ActionExecutingContext)
+			- The Method is loaded and execution is started
+			- ActionExecutingContext: The Class that is defibed from ControllerContext, hence this has access to HTTP Request Pipeline with Httprequest Object, HttpHeaders, Current User, and RouteData
+		- OnActionExecuted(ActionExecutedContext)
+			- The action method has done with the execution
+			- ActionExecutedContext: Same as ActionExecutingContext for Base class
+		- OnResultExecuting(ResuleExecutingContext)
+			- The Result generations started
+				- If ViewrRsult then load the View and execute it
+				- ResuleExecutingContext: Derived from ControllerContext and has access to RouteData
+		- OnResultExecuted(ResultExecutedContext)
+			- The Result generation is complete and response is ready
+			- ResultExecutedContext: Sane as ResuleExecutingContext fro Base class
+	- IExceptionFiltre, IAuthorizationFilter, etc.
+-  Best Practices
+	- The Filter MUST have a Common Logic That is to be executed for entire application along with the Request Processing
+- Practices For Error Handling
+	- Each action method MUSt have exception handling
+	- Mandatory for the Action Methods those are working on very Complex logic e.g. Data Access, or File Operations
+	- Each Controller has 'OnException()' method this will be used to handle erros in the code
+		- OnException(ExceptionContext)
+			- ExceptionContext, derived fron ControllerContext
+	- To show error we can use Error.cshtml view and this view hase Model class as
+		- 'System.Web.Mvc.HandleErrorInfo'
+	- Create a Custom Exception Filter
+		- Class Implements IExceptionFilter and Override 'OnException()' method 
+		- Modify The Web.Config file for CustomError= on
+
+- Sharing Data Across Controllers
+	- Use the 'TempData', a mechanism to pass data as a Dictionary, once the receiver controller reads data from TempData the TempData will be cleaned (Data will be removed). To Retain data of TempData in Controller2 use the TempData.Keep() method
+	- Use the Session Object
+		- Sessoin State provider by the Web Server

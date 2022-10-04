@@ -124,3 +124,16 @@ Perform Following Operatrions on the Above String
 	- MAke sure that the Edit View for Product also shows the Dropdow for Category Names
 	- Make sure that the CategoryId is not repeted (Now)
 	
+# Date: 04-Oct-2022
+
+1. Create a Custom Action Filter That will Log Each request in Database Table as
+	- RequestDateTime
+	- Controller Requested
+	- Action Request
+	- URL
+2. Modify the Custom Exception Filter to Log the Exception Occured in Database Table  (Enhancements in Task 1) as
+	- ExceptionMessage
+	- DateTime
+	- Controller
+	- Action
+ - 2.a. Show the error Details on Error Page adn When the 'Go BAck' linlk is clicked make sure that the View Shows the data that has caused Exception and the corresponding error message must be displayed on the View 	
