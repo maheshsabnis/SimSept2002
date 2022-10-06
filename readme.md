@@ -566,3 +566,46 @@
 			- Token Based Authentication
 
 		
+- To Secure Controller, the [Authorize] Attribute MUST be applied on either the whole Controller so that all action methods will be secured or otherwise apply on seperate action methods to secure those action methods only 
+	- The 'AuthorizeAttribute' class contains 'Users' and 'Roles' properties using which we can allow authentication and authorization to specific users and roles
+	- The 'OnAuthorization()' method takes responsibility for User/Roles based Authorization
+- Using Role Based Security
+	- Create a Role Controller and add action methods for
+		- List all roles
+		- CReate new Role
+		- Assign Role to User
+	- Use the RoleManager<IdentityUser>
+		- Roles property to list all roles
+		- CreateAsync() method to create new Role
+```` csharp
+ public class RoleController : Controller
+    {
+      
+        ApplicationDbContext context;
+        public RoleController(RoleManager<IdentityRole> role)
+        {
+            // this will allow ro aceess roles, creates roles, as well as managed them
+            context = new ApplicationDbContext();
+        }
+             
+        // GET: Role
+        public ActionResult Index()
+        {
+            var roles  =context.Roles.ToList();
+            return View(roles);
+        }
+
+        public ActionResult Create()
+        {
+            var role = new IdentityRole();
+            return View(role); 
+        }
+
+        public ActionResult Create(IdentityRole role)
+        {
+            context.Roles.Add(role);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+````

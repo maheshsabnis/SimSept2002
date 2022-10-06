@@ -1,0 +1,31 @@
+﻿@model MVC_App.Models.UserRoles
+
+@{
+    ViewBag.Title = "AssignRoleToUser";
+}
+
+<h2>List of Users and Roles</h2>
+
+@using (Html.BeginForm("AssignRoleToUser","Account"))
+{
+  <table class="table table-bordered table-striped">
+      <thead>
+          <tr>
+              <td>List of Users</td>
+              <td>List of Roles</td>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>
+                  @Html.DropDownList("User")
+              </td>
+              <td>
+                  @Html.DropDownList("Role")
+              </td>
+          </tr>
+      </tbody>
+  </table>
+<input type="submit" value="Assign Role To User" />
+}
+

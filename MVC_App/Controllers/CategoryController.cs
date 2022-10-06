@@ -10,6 +10,10 @@ using Application.Data.DataAccess.Services;
 
 namespace MVC_App.Controllers
 {
+    /// <summary>
+    /// Only Authorizing the user1
+    /// </summary>
+  //  [Authorize(Users ="user1@msit.com")]
     public class CategoryController : Controller
     {
         IDbAccess<Category, int> catServ;
@@ -21,6 +25,7 @@ namespace MVC_App.Controllers
 
 
         // GET: Category
+        [Authorize(Roles = "Manager,Clerk,Operator")]
         public ActionResult Index()
         {
             var result = catServ.Get();
@@ -28,7 +33,12 @@ namespace MVC_App.Controllers
             // view will show data
             return View(result);
         }
-
+        /// <summary>
+        /// Only Secure the Create Action and hence all actions those are initated using the Create.cshtml 
+        /// </summary>
+        /// <returns></returns>
+        //   [Authorize]
+        [Authorize(Roles = "Manager,Clerk")]
         public ActionResult Create()
         {
             var cat = new Category();
@@ -41,7 +51,7 @@ namespace MVC_App.Controllers
             var result = catServ.Create(category);
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Manager,Clerk")]
         public ActionResult Edit(int id)
         {
             var cat = catServ.Get(id);
@@ -55,7 +65,7 @@ namespace MVC_App.Controllers
             var result = catServ.Update(id, category);
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Manager")]
         public ActionResult Delete(int id)
         {
             var cat = catServ.Delete(id);

@@ -58,13 +58,60 @@ namespace MVC_App.Controllers
             }
         }
 
+
+        /// <summary>
+        /// TO Assign Role to User
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        [AllowAnonymous]
+        public ActionResult AssignRoleToUser()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            UserRoles userRoles = new UserRoles();
+            // Get All USers and Roles
+            ViewBag.User = new SelectList(context.Users.ToList(), "Id", "Email");
+            ViewBag.Role = new SelectList(context.Roles.ToList(), "Id", "Name");
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> AssignRoleToUser(UserRoles userRoles)
+        {
+            try
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                // Check if User Exist
+
+                var userAvailable = UserManager.FindById(userRoles.User);
+
+                if (userAvailable == null)
+                    throw new Exception($"User {userRoles.User} is not Available");
+              // Check if Role Exist
+                var roleAvailable = context.Roles.Where(r=>r.Id == userRoles.Role).First();
+                if (roleAvailable == null)
+                    throw new Exception($"Role {userRoles.Role} is not available");
+                // Then Assign Role To User
+                // First Parameter us USerId 
+                // Second Parameter is Role Name
+                await UserManager.AddToRoleAsync(userRoles.User, roleAvailable.Name);
+
+                // If the Role is assigned successfully then Return to Index Page of Role Controller
+            return RedirectToAction("Index", "Role");
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new HandleErrorInfo(ex, RouteData.Values["controller"].ToString(), RouteData.Values["action"].ToString()));
+            }
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View(new LoginViewModel());
         }
 
         //
@@ -145,7 +192,8 @@ namespace MVC_App.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+
+            return View(new RegisterViewModel());
         }
 
         //
@@ -162,7 +210,7 @@ namespace MVC_App.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // The User will be LoggedIn
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

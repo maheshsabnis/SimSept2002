@@ -137,3 +137,10 @@ Perform Following Operatrions on the Above String
 	- Controller
 	- Action
  - 2.a. Show the error Details on Error Page adn When the 'Go BAck' linlk is clicked make sure that the View Shows the data that has caused Exception and the corresponding error message must be displayed on the View 	
+
+ #Date:06-Oct-2022
+
+ 1. When the MVC Application is loaded for the First time, create a Adminsitrator role and 'admin@myapp.com' user with password as 'P@ssw0rd_', and assign 'Administrator' role to  'admin@myapp.com
+ 2. The User Can Register himself using Register View
+ 3. The User can login only when and Administrator assigns Role to it
+	- Role Controller can be only accessed using the Administrator Role
