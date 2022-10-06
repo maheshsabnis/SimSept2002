@@ -539,3 +539,30 @@
 	- Use the 'TempData', a mechanism to pass data as a Dictionary, once the receiver controller reads data from TempData the TempData will be cleaned (Data will be removed). To Retain data of TempData in Controller2 use the TempData.Keep() method
 	- Use the Session Object
 		- Sessoin State provider by the Web Server
+
+# Security MVC 5
+
+1. Individual User Authentication
+	- The Use of EntityFramework for Creating the Identity Database and storing Credentials in it
+	- Microsoft.AspNet.Identity.Core
+		- The base frameweork for Identity Management 
+	- Microsoft.AspNet.Identity.EntityFramework
+		- Creates Databases and Tabgles for stroinbg, Users, Roles and UsetInRoles
+	- Integration with Open Web Interface for .NET (OWIN)
+		- Microsoft.Owin
+			- Base Framework for
+				- Set Rules for following
+					- User registration, MUST be a Unique Email
+					- Password, MUST be a Strog Password
+					- Two-FActor Authentication
+						- SMS 
+						- Email
+					- Invalid Attempts to Lock Account
+					- Security Access Markup Language (SAML) Token
+		- Microsoft.AspNet.Identity.Owin
+			- Manages Authentication and Authorization
+			- Cookie Based Authentication
+			- Role Based Secuerity
+			- Token Based Authentication
+
+		

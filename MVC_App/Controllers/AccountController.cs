@@ -22,6 +22,12 @@ namespace MVC_App.Controllers
         {
         }
 
+        /// <summary>
+        /// ApplicationUserManager: Create and Manage Users
+        /// ApplicationSignInManager: Manage User Sign In
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -152,9 +158,11 @@ namespace MVC_App.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                // Create a User
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    // The User will be LoggedIn
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

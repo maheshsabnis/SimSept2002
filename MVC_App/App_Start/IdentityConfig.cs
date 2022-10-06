@@ -33,6 +33,10 @@ namespace MVC_App
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
+   /// <summary>
+   /// Help to Reister New User and and Set the Rules for User Creation 
+   /// e.g. The Password MUST be STrong Password 
+   /// </summary>
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
@@ -47,6 +51,7 @@ namespace MVC_App
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
+                // The User MUST register using EMail Address
                 RequireUniqueEmail = true
             };
 

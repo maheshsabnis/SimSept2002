@@ -17,7 +17,11 @@ namespace MVC_App.Models
             return userIdentity;
         }
     }
-
+    /// <summary>
+    /// Class deriuved from IdentityDbContext<ApplicationUser>
+    /// This is used to Generate Idemntity Database and ASPNET Identity tables in it
+    /// based on Connection String
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

@@ -12,6 +12,11 @@ namespace MVC_App
     public partial class Startup
     {
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
+        /// <summary>
+        /// IAppBuilder The interfec that is used to build an Object model for secure application
+        /// access
+        /// </summary>
+        /// <param name="app"></param>
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
@@ -25,6 +30,7 @@ namespace MVC_App
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                // Account Controller and its Login Action Method 
                 LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
