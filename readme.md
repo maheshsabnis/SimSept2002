@@ -609,3 +609,48 @@
         }
     }
 ````
+
+# JavaScript Integration
+- Custom Focused or Custom Orientd Apps
+	- The Applications are developed as
+		- Cross Platform
+		- Cross Browser
+		- Cross Device
+		- High-Responsive
+	- The App fetch data (only) from the Server over HTTP
+		- The Server-Side app MUST have 'Data Services'
+		- Create Represential State Transfer aka REST API for Data Communication
+			- Action Methods those are accessible over HTTP Methods
+				- HTTP-GET, will read data from server
+				- HTTP-POST, write new data to server
+				- HTTP-PUT, update existing data on the server
+				- HTTP-DELETE, delete exisiting data from server
+- ASP.NET MVC 5, with .NET Framework 4.0+, the REST API
+	- ApiController the base class for REST API
+		- Methods
+			- Ok()
+			- NotFound()
+			- NoContent()
+			- BadRequest()
+			- ....
+		- The Response is only in the form of JSON
+		- Each Action Methodmos WEB API will return 'IHttpActionResult' for JSON response
+	- USes the Http Action Methods those are mapped with HTTP Methods
+		- Get(), Get(id), Post(CLR Object), Put(id, CLR Object), and Delete(id)
+	- Recommendations
+		- Use the Dependency Injection(?) to provide dependencies with Repopsitoriwes, Data Access, etc in ApiControllers 
+		- Serveral DI Engines / Providers are available
+			- Unity By Microsoft
+			- IoC.NET
+			- NInject
+			- AutoFact
+			- Simple Instance
+			- Castle Windosor
+			- .... amd many more
+	- Create a API Project and Add The Unity.WebApi NuGet PAckage in it
+		- Either Use Postman or the AdvancedRESTClient tool to make call to REST APIs
+		- Otherwise Create a Client Application
+	- Install Unity.WebApi package to integrate Unity Applciation Dependency Container with the Web Api Application 
+	- If using the EntityFramework in API application either directrly all code in API project or inseperated libtrtary prokject referred in API project, the EF package MUSt be installed
+		- Modifuy the Web.Config file with Connsectrion string with Database 
+	- The REST APIs are used for Server-Side Search also
