@@ -7,7 +7,7 @@ using System.Web.Http;
 using Application.Data.Contract;
 using Application.Model.Entities;
 using Application.Data.DataAccess.Services;
- 
+using System.Web.Http.Cors;
 
 namespace API_App.Controllers
 {
@@ -15,6 +15,8 @@ namespace API_App.Controllers
     /// Lets Inject the Service Dependencies in the constructor
     /// http://localhost:44344/api/Category
     /// </summary>
+    /// 
+    [EnableCors("*", "*", "*")]
     public class CategoryController : ApiController
     {
         private readonly IDbAccess<Category, int> catServ;

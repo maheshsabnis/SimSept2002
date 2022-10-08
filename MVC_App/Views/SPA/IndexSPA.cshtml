@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "IndexSPA";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#btnloadcreateview").on('click', function () {
+            // Use the Url.Action() to call MVC COntroller Action Methods in 
+            // jQuery
+            var url = '@Url.Action("LoadCreateView", "SPA")';
+            loadView(url);
+        });
+
+        $("#btnloadlistview").on('click', function () {
+            var url = '@Url.Action("LoadListView", "SPA")';
+            loadView(url);
+        });
+
+    });
+
+    function loadView(url) {
+        $.ajax({
+            url: url,
+            type: 'GET'
+        }).done(function (response) {
+            // the Call to Action Methods will return a Partial View as HTML
+            $("#dvview").html(response);
+        }).fail(function (error) {
+            $("#dvstatus").html(error)
+        });
+    }
+</script>
+
+<h2>A Single Page App that loads Views Dynamically using jQuery</h2>
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>
+            <input type="button" id="btnloadlistview"  value="Load List View" class="btn btn-primary"/>
+        </td>
+        <td>
+            <input type="button" id="btnloadcreateview" value="Load Create View" class="btn btn-success"/>
+        </td>
+    </tr>
+</table>
+<hr/>
+<div class="container" id="dvview"></div>
+

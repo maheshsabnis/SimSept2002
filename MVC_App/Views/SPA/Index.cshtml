@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+ 
+<script>
+    $(document).ready(function () {
+        var Categories = [];
+        loadData();
+
+        $("#btnadd").on('click', function () {
+            createNewCategory();
+        });
+
+        $("#catuniqueid").on('change', function () {
+            loadRecord();
+        });
+
+        $("#btnupdate").on('click', function () {
+            updateCategory();
+        });
+
+
+        $("#btndelete").on('click', function () {
+            deleteRecord();
+        });
+
+
+
+    });
+    // Logic to make AJAX call to WEB API to read category Data
+    function loadData() {
+        $.ajax({
+            url: 'https://localhost:44313/api/Category',
+            type: 'GET'
+        }).done(function (response) {
+            Categories = response;
+            // alert(JSON.stringify(Categories));
+            if (Categories.length > 0) {
+                // if there are records in Categories then only call the method
+                generateTable(Categories);
+            }
+        }).fail(function (error) {
+            $("#dvstatus").html(error)
+        })
+    }
+
+    function generateTable(Categories) {
+        // Read all properties of the 0th record of the Received Category from API
+        var columns = Object.keys(Categories[0]);
+        // generate Table hreders
+        var th = '';
+        $.each(columns, function (idx, col) {
+            th += '<th>' + col + '</th>';
+        });
+        $("#tr").html(th);
+        var tr = '';
+        $.each(Categories, function (index, record) {
+            tr += '<tr><td>' + record.CategoryUniqueId + '</td><td>' + record.CategoryId + '</td><td>' + record.CategoryName + '</td><td>' + record.BasePrice + '</td></tr>';
+        });
+
+        $("#tbody").html(tr);
+    }
+
+
+    function createNewCategory() {
+        // create an Object  that can be POSTED to API
+
+        var cat = {
+            CategoryId: $("#catid").val(),
+            CategoryName: $("#catname").val(),
+            BasePrice: $("#baseprice").val()
+        };
+
+        $.ajax({
+            url: 'https://localhost:44313/api/Category',
+            type: 'POST',
+            data: cat,
+            datatype: 'json',
+            contenttype: 'application/json'
+        }).done(function (response) {
+            
+            // Push this object inthe Categories Array
+            Categories.push(response);
+            generateTable(Categories);
+        }).fail(function (error) {
+            $("#dvstatus").html(error)
+        })
+    }
+
+
+    function updateCategory() {
+        // create an Object  that can be POSTED to API
+
+        var cat = {
+            CategoryUniqueId: $("#catuniqueid").val(),
+            CategoryId: $("#catid").val(),
+            CategoryName: $("#catname").val(),
+            BasePrice: $("#baseprice").val()
+        };
+
+        $.ajax({
+            url: 'https://localhost:44313/api/Category/' + cat.CategoryUniqueId,
+            type: 'PUT',
+            data: cat,
+            datatype: 'json',
+            contenttype: 'application/json'
+        }).done(function (response) {
+            loadData();
+        }).fail(function (error) {
+            $("#dvstatus").html(error)
+        })
+    }
+
+    // method to search a record based on CategoryUnique Id
+    // this wmthod will be called on 'change' event of the catuniqueid HTML Input element
+    function loadRecord() {
+        var id = $("#catuniqueid").val();
+        $.ajax({
+            url: 'https://localhost:44313/api/Category/'+id,
+            type: 'GET'
+        }).done(function (response) {
+             // show data in TextBoxes
+            $("#catid").val(response.CategoryId);
+            $("#catname").val(response.CategoryName);
+            $("#baseprice").val(response.BasePrice);
+        }).fail(function (error) {
+            $("#dvstatus").html(error)
+        })
+    }
+
+    function deleteRecord() {
+        var id = $("#catuniqueid").val();
+        $.ajax({
+            url: 'https://localhost:44313/api/Category/' + id,
+            type: 'DELETE'
+        }).done(function (response) {
+            loadData();
+        }).fail(function (error) {
+            $("#dvstatus").html(error)
+        })
+    }
+
+
+</script>
+
+<h2>Calling Web API Using jQuery</h2>
+
+<div class="container">
+    <div class="form-group">
+        <label>Category Unique Id</label>
+        <input type="text" id="catuniqueid" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Category Id</label>
+        <input type="text" id="catid" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Category Name</label>
+        <input type="text" id="catname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Base Price</label>
+        <input type="text" id="baseprice" class="form-control" />
+    </div>
+    <div class="btn-group">
+        <input type="button" value="Create New" id="btnadd" class="btn btn-success" />
+        <input type="button" value="Update" id="btnupdate" class="btn btn-primary" />
+        <input type="button" value="Delete" id="btndelete" class="btn btn-danger" />
+        <input type="button" value="Clear" id="btnclear" class="btn btn-warning" />
+
+    </div>
+</div>
+<br/>
+<div id="dvstatus"></div>
+<br/>
+<table class="table table-bordred table-striped">
+     <thead id="thead">
+         <tr id="tr"></tr>
+     </thead>
+     <tbody id="tbody"></tbody>
+</table>
+
+

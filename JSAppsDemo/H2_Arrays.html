@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            // 1. define an array
+            var arrNames = [];
+            // PUSH data in array
+            arrNames.push('Tejas');
+            arrNames.push('Mahesh');
+            arrNames.push('Ramesh');
+            arrNames.push('Ram');
+            arrNames.push('Shankar');
+            arrNames.push('Vivek');
+            arrNames.push('Satish');
+            arrNames.push('Mukesh');
+            arrNames.push('Sandeep');
+            arrNames.push('Vinay');
+
+            // lets show data from Array in lstNames
+            var options = '';
+            for (var i = 0; i < arrNames.length; i++) {
+                options += '<option value="' + i + '">' + arrNames[i] + '</option>';
+            }
+            // add option in lstNames
+            // use the 'innerHTML' property
+            // innerHTML the property used to generate HTML dynamically
+            document.getElementById('lstNames').innerHTML = options;
+
+            // Now lets show the selected name on div
+            document.getElementById('lstNames').addEventListener('change', function () {
+                document.getElementById('dv').innerHTML = ' Selected Name:';
+                var name = '';
+                // select the text of selected option
+                name = this.options[this.selectedIndex].text;
+
+                document.getElementById('dv').innerHTML += name;
+
+            }, false);
+            
+        };
+    </script>
+</head>
+<body>
+    <h1>Using Array</h1>
+    <div>
+        <strong>Show Records in Array:</strong>
+        <br/>
+        <select id="lstRecords">
+            <option value="1">A</option>
+            <option value="2">B</option>
+        </select>
+    </div>
+    <hr/>
+    <div>
+        <strong>Show Names From Array</strong>
+        <br/>
+        <select id="lstNames">
+        </select>
+    </div>
+    <br/>
+    <div>
+        <strong>
+            <div id="dv">
+                Selected Name: 
+            </div>
+        </strong>
+    </div>
+</body>
+</html>

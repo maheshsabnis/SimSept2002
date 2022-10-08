@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!--Refer the jQuery-->
+    <script src="Scripts/jquery-3.6.0.js"></script>
+    <!--Let's Write the Script using jQuery'-->
+    <script>
+        $(document).ready(function () {
+            // extract the button based on id and attach a 'click' event to it
+            $("#btn1").on('click', function () {
+                alert('Button 1 is clicked');
+            });
+
+            $("#btnclear").on('click', function () {
+                $('.c1').val('');
+            });
+
+
+            var arrNames = [];
+            // PUSH data in array
+            arrNames.push('Tejas');
+            arrNames.push('Mahesh');
+            arrNames.push('Ramesh');
+            arrNames.push('Ram');
+            arrNames.push('Shankar');
+            arrNames.push('Vivek');
+            arrNames.push('Satish');
+            arrNames.push('Mukesh');
+            arrNames.push('Sandeep');
+            arrNames.push('Vinay');
+
+            // generate <option> in <select> element having id as lstNames
+            var option = '';
+            // the callbback function will be executed for each record in collection
+            $.each(arrNames, function (index, name) {
+                option += '<option value="' + index + '">' + name + '</option>';
+            });
+            // add option in lstNames
+            $("#lstNames").html(option);
+
+
+            $("#lstNames").on('change', function () {
+                var val = ($(this).val());
+
+                var text = $("#lstNames option:selected").text();
+                alert(val + ' '  + text );
+            });
+
+            
+
+            $("#btnadd").on('mouseenter', function () {
+                // refer element using 'this'
+                $(this).css('backgroundColor', 'red');
+            });
+
+            $("#btnadd").on('mouseleave', function () {
+                // refer element using 'this'
+                $(this).css('backgroundColor', '');
+            });
+
+            var obj = {
+                id: 101, name:'A' 
+            };
+            // Read Properties of obj
+            var keys = Object.keys(obj);
+
+            alert(keys);
+
+        });
+    </script>
+</head>
+<body>
+    <h1>Using jQuery</h1>
+    <table>
+        <tr>
+            <td>
+                <input type="button" id="btn1" value="Click Me" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                N1
+            </td>
+            <td>
+                <input type="text" id="n1" class="c1" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                N2
+            </td>
+            <td>
+                <input type="text" id="n2" class="c1" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Result
+            </td>
+            <td>
+                <input type="text" id="res" class="c1" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="btnclear" value="Clear" />
+            </td>
+            <td>
+                <input type="button" id="btnadd" value="Add" />
+            </td>
+            <td>
+                <input type="button" id="btnsub" value="Substract" />
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <select id="lstNames"></select>
+</body>
+</html>

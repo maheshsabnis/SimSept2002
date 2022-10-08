@@ -10,7 +10,8 @@ namespace API_App
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            // Enablin Cross Origin Resource Sharing
+            config.EnableCors();
             // Web API routes
             config.MapHttpAttributeRoutes();
             // Routing For the API

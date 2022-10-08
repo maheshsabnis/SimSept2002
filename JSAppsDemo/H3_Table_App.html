@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var Employees = [];
+
+            document.getElementById('btnclear').addEventListener('click', function () {
+                var txts = document.getElementsByClassName('c');
+                for (var i = 0; i < txts.length; i++) {
+                    txts[i].value = '';
+                }
+            }, false);
+
+            document.getElementById('btnadd').addEventListener('click', function () {
+               // add data into Employees Array
+                // lets deine a JSON object that will have data
+                var emp = {
+                    EmpNo: 0,
+                    EmpName:''
+                };
+
+                // read values from input text elements and set them to JSON object proeprties
+                emp.EmpNo = parseInt(document.getElementById('txteno').value);
+                emp.EmpName = document.getElementById('txtename').value;
+
+                // add the object into Employees Array
+                Employees.push(emp);
+
+                // show data in console window of the Browser
+                console.log(JSON.stringify(Employees));
+                generateTable(Employees);
+            }, false);
+
+
+            function generateTable(employees) {
+                var tr = '';
+                for (var i = 0; i < employees.length; i++) {
+                    tr += '<tr><td>'+ employees[i].EmpNo + '</td><td>' + employees[i].EmpName+'</td></tr>';
+                }
+
+                document.getElementById('tbody').innerHTML = tr;
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>The APplication Using Table</h1>
+    <div>
+        EmpNo: <input type="text" id="txteno" class="c"/>
+    </div>
+    <br />
+    <div>
+        EmpName: <input type="text" id="txtename" class="c"/>
+    </div>
+    <div>
+        <input type="button" id="btnclear" value="Clear" />
+        <input type="button" id="btnadd" value="Add" />
+    </div>
+    <hr/>
+    <table>
+        <thead>
+            <tr>
+                <th>EmpNo</th>
+                <th>EmpName</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+</body>
+</html>

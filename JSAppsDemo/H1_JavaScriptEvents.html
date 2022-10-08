@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            // 1. Read the element by Id
+            var btn1 = document.getElementById('btn1');
+            btn1.addEventListener('click', function () {
+                // dialog Box
+                alert('The Button is Clicked');
+            }, false);
+
+            var btnAdd = document.getElementById('btnadd');
+            btnAdd.addEventListener('click', function () {
+
+                // read values from n1 and n2 input text elements
+                var n1 = document.getElementById('n1').value;
+                var n2 = document.getElementById('n2').value;
+                // parse the n1 and n2 to number
+                // parse string into number
+                var res = parseInt(n1) + parseInt(n2);
+
+                // assign value to res input text element
+
+                document.getElementById('res').value = res;
+
+            }, false);
+
+            var btnSub = document.getElementById('btnsub');
+
+            btnSub.addEventListener('click', function () {
+
+                // read values from n1 and n2 input text elements
+                var n1 = document.getElementById('n1').value;
+                var n2 = document.getElementById('n2').value;
+                // parse the n1 and n2 to number
+                // parse string into number
+                var res = parseInt(n1) - parseInt(n2);
+
+                // assign value to res input text element
+
+                document.getElementById('res').value = res;
+
+            }, false);
+
+            var btnClear = document.getElementById('btnclear');
+            btnClear.addEventListener('click', function () {
+
+                // reading each input text element seperately and clearing its value
+                //document.getElementById('n1').value = '';
+                //document.getElementById('n2').value = '';
+                //document.getElementById('res').value = '';
+
+                // using the getElementsByTagName
+                // return an array
+                // This will create an array of all HTML input elements
+                // invcluding input button
+
+              //  var inputs = document.getElementsByTagName('input');
+
+                // iterate over the inputs array and clear them
+
+                //for (var i = 0; i < inputs.length; i++) {
+                //    inputs[i].value = '';
+                //}
+
+                // get an array of HTML elements having
+                // class attribute value as 'c1'
+                var inputs = document.getElementsByClassName('c1');
+                // iterate over the inputs array and clear them
+
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].value = '';
+                }
+
+
+            }, false);
+
+            // a Change event on text elements to accept only +Ve value
+
+            var txtn1 = document.getElementById('n1');
+            txtn1.addEventListener('change', function () {
+                // Read the value of the element itself on the
+                // current callback is executing
+                // to refer the HTML element in its event use 'this' object
+
+                var valN1 = this.value;
+                
+                if (parseInt(valN1) < 0) {
+                    this.value = 0;
+                }
+            }, false);
+
+            btnAdd.addEventListener('mouseenter', function () {
+                // change the style of the button with its backcolor
+
+                this.style.backgroundColor = 'red';
+
+
+            }, false);
+
+            btnAdd.addEventListener('mouseleave', function () {
+                // change the style of the button with its backcolor
+
+                this.style.backgroundColor = '';
+
+
+            }, false);
+
+        };
+    </script>
+</head>
+<body>
+    <h1>The Simple JavaScript Events for HTML Elements</h1>
+    <table>
+        <tr>
+            <td>
+                <input type="button" id="btn1" value="Click Me" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                N1
+            </td>
+            <td>
+                <input type="text" id="n1"  class="c1"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                N2
+            </td>
+            <td>
+                <input type="text" id="n2" class="c1"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Result
+            </td>
+            <td>
+                <input type="text" id="res" class="c1"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="btnclear" value="Clear" />
+            </td>
+            <td>
+                <input type="button" id="btnadd" value="Add" />
+            </td>
+            <td>
+                <input type="button" id="btnsub" value="Substract" />
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

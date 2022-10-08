@@ -25,7 +25,7 @@ namespace MVC_App.Controllers
 
 
         // GET: Category
-        [Authorize(Roles = "Manager,Clerk,Operator")]
+       // [Authorize(Roles = "Manager,Clerk,Operator")]
         public ActionResult Index()
         {
             var result = catServ.Get();
@@ -38,7 +38,7 @@ namespace MVC_App.Controllers
         /// </summary>
         /// <returns></returns>
         //   [Authorize]
-        [Authorize(Roles = "Manager,Clerk")]
+   //     [Authorize(Roles = "Manager,Clerk")]
         public ActionResult Create()
         {
             var cat = new Category();
@@ -51,7 +51,7 @@ namespace MVC_App.Controllers
             var result = catServ.Create(category);
             return RedirectToAction("Index");
         }
-        [Authorize(Roles = "Manager,Clerk")]
+     //   [Authorize(Roles = "Manager,Clerk")]
         public ActionResult Edit(int id)
         {
             var cat = catServ.Get(id);
@@ -65,7 +65,7 @@ namespace MVC_App.Controllers
             var result = catServ.Update(id, category);
             return RedirectToAction("Index");
         }
-        [Authorize(Roles = "Manager")]
+     //   [Authorize(Roles = "Manager")]
         public ActionResult Delete(int id)
         {
             var cat = catServ.Delete(id);

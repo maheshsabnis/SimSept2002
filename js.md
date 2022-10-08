@@ -159,13 +159,58 @@
 		- $(document).ready(function(){........});
 	- inserted of document.getElementById()
 		- $("#id of HTMLElement")
+			- the '#' is the 'id' selector
 	- instead of document.getElementsByTagName()
 		- $("TAG-NAME"), e.g. $('input'); all input elements
+			- the 'TAG-NAME' is the 'TAG' selector
 	- instead of using document.getElementsByClassName()
 		- $(".CLASS-NAME"), e.g. $('.c1')l where 'c1' is a class atrribute of HTMl element
+			- the the '.' is the 'class' selector
 	- instead of document.addEventListener() for attacheing event
 		- $("#id of HTML Element").on('event-name', function callback)
 	- $.each(), a function for itartion
+	
+	- The jQuery filters
+		- USed to extract an element or a value from collection based on its 'index' or 'location'
+			- :selected, :nth-child(n), :first, :last, :checked
 	- All Syntax of JavaScript is supported by jQuery
+
+
+
+
+
 	- ASP.NET MVC 4+
 		- The default support for jQuery
+			- The MVC View will generate HTML Rended Page and the id and name attribute of each editable element will be the Model property name boind with HTML helper Method that renderes the HTML element in Browser
+			- e.g. consider the following HTMlHelper in MCV View 
+```` csharp
+		@Html.EditorFor(m->m.CategoryId)
+````
+			- The Above HTMl helper will will rendered in browser as follows
+```` html
+			<input type="text" id="CategoryId" name="CategoruId"/>
+````
+			- This will help to write the jQuery as well as JavaScript Code on View
+- $.ajax().done().error();
+	- USed to make Asynchronous HTTP Requet to WEB API / REST API
+	- ajax(); will initial the call
+		- ajax({
+		   url: 'URL of REST API',
+		   type: 'HTTP-METHOD, GET, POST, PUT,DELETE',
+		   data: data to be used in POST and PUT request,
+		   datatype: 'TYPE-OF-DATA-SEND-TO-SERVER',
+		   contenttype: 'THE MIME-TYPE USED in case of POST and PUT Request',
+		   headers: {
+		     USED if the API is secure
+		   }
+		})
+	- done(callback function for successful execution); this will be executed if the call is successful
+	- fail(callback function for failure execution); this will be executed if the call fails 
+- IMP NOTE:
+	- While making AJAX call (HTTP Request) to REST API from different Domain (Origin), the 'Cross-Origin-Resource-Sharing' (CORS) error will occur becasue the REST API cannot directly accept request from Browser client. We MUST make sure that the REST API is defrining CORS policies
+		- Origin: The domain of  the browser based app Caller
+		- Headers: The Http Headers allowed by the API
+		- Methods: HTTP Methods allowed by API
+	- in ASP.NET WEB API on .NET Framework install 
+		- Microsoft.AspNet.WebApi.Cors package in API Project and use the EnableCors() attribute on COntroller class
+			- [EnableCore(ORIGINN-AS-STRING, HEADERS-AS-STRING, METHODS-AS-STRING)]
